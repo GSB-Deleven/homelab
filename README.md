@@ -3,8 +3,6 @@
 I will start to document my HomeLab here step by step
 You should find the relevant info in the [Wiki](https://github.com/GSB-Deleven/HomeLab/wiki) or in this README here
 
-https://github.com/sindresorhus/awesome
-
 ## Inspiration
 Most of the inspiration comes from this guys here:  
 https://awesome-selfhosted.net/
