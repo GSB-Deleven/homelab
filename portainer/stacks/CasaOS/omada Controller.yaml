@@ -1,0 +1,79 @@
+name: playful_earvin
+services:
+  omada-controller:
+    cpu_shares: 90
+    command: []
+    container_name: omada-controller
+    deploy:
+      resources:
+        limits:
+          memory: 15891M
+    environment:
+      - MANAGE_HTTP_PORT=8088
+      - MANAGE_HTTPS_PORT=8043
+      - PGID=1000
+      - PORT_ADOPT_V1=29812
+      - PORT_APP_DISCOVERY=27001
+      - PORT_DISCOVERY=29810
+      - PORT_MANAGER_V1=29811
+      - PORT_MANAGER_V2=29814
+      - PORT_RTTY=29816
+      - PORT_TRANSFER_V2=29815
+      - PORT_UPGRADE_V1=29813
+      - PORTAL_HTTP_PORT=8088
+      - PORTAL_HTTPS_PORT=8843
+      - PUID=1000
+      - SHOW_MONGODB_LOGS=false
+      - SHOW_SERVER_LOGS=true
+      - SSL_CERT_NAME=tls.crt
+      - SSL_KEY_NAME=tls.key
+      - TZ=Europe/Zurich
+    image: mbentley/omada-controller:5.12
+    labels:
+      icon: data:image/png;base64,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
+    ports:
+      - target: 8088
+        published: "8088"
+        protocol: tcp
+      - target: 8043
+        published: "8043"
+        protocol: tcp
+      - target: 8843
+        published: "8843"
+        protocol: tcp
+      - target: 27001
+        published: "27001"
+        protocol: udp
+      - target: 29810
+        published: "29810"
+        protocol: udp
+      - target: 29811
+        published: 29811-29816
+        protocol: tcp
+    privileged: true
+    restart: unless-stopped
+    ulimits:
+      nofile:
+        soft: 4096
+        hard: 8192
+    volumes:
+      - type: bind
+        source: /DATA/AppData/omada/data
+        target: /opt/tplink/EAPController/data
+      - type: bind
+        source: /DATA/AppData/omada/logs
+        target: /opt/tplink/EAPController/logs
+    devices: []
+    cap_add: []
+    network_mode: host
+x-casaos:
+  author: self
+  category: self
+  hostname: omada.tplinkcloud.com
+  icon: data:image/png;base64,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
+  index: /
+  port_map: ""
+  scheme: https
+  store_app_id: playful_earvin
+  title:
+    custom: omada Controller
