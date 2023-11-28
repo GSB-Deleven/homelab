@@ -1,7 +1,6 @@
 {
 	"version": "2",
 	"templates": [
-// Bookstack
 		{
 			"categories": [
 				"Wiki"
@@ -54,7 +53,6 @@
 			"title": "Bookstack",
 			"type": 3
 		},
-// CloudFlare DDNS
 {
 			"categories": [
 				"DNS",
