@@ -1,0 +1,14 @@
+version: '3'
+services:
+  file-browser:
+    image: filebrowser/filebrowser
+    container_name: file-browser
+    user: 1000:1000 #still git some permission issues
+    ports:
+      - 85:80
+    volumes:
+      - /:/srv
+      - /DATA/AppData/filebrowser/filebrowser.db:/database.db #need to be created befor you run it the first time with "sudo touch /DATA/AppData/filebrowser/filebrowser.db"
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
