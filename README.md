@@ -10,7 +10,7 @@ You should find the relevant info in the [Wiki](https://github.com/GSB-Deleven/H
 ## mounting NFS shares (NAS Shares)
 1. Go to home directory`cd ~`
 2. create the [mount_nfs.sh](mount_nfs.sh) `sudo nano mount_nfs.sh`
-3. copy the contents from [mount_nfs.sh](mount_nfs.sh) and ad it
+3. copy the contents from [mount_nfs.sh](mount_nfs.sh) and ad it, `then Ctrl+X -> Y -> Enter` to save it
 4. make it executable `chmod +x mount_nfs.sh`
 5. run it `./mount_nfs.sh`
 
