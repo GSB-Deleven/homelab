@@ -8,7 +8,11 @@ You should find the relevant info in the [Wiki](https://github.com/GSB-Deleven/H
 [![image](https://github.com/GSB-Deleven/HomeLab/assets/35196079/8276e582-e2cf-4dc7-9313-06dc8e1729d4)](https://tteck.github.io/Proxmox/)
   
 ## mounting NFS shares (NAS Shares)
-use the [mount.sh_nfs.sh](mount_nfs.sh) to mount a NFS share
+1. Go to home directory`cd ~`
+2. create the [mount_nfs.sh](mount_nfs.sh) `sudo nano mount_nfs.sh`
+3. copy the contents from [mount_nfs.sh](mount_nfs.sh) and ad it
+4. make it executable `chmod +x mount_nfs.sh`
+5. run it `./mount_nfs.sh`
 
 ## Inspiration
 Most of the inspiration comes from this guys here:  
