@@ -8,6 +8,14 @@ You should find the relevant info in the [Wiki](https://github.com/GSB-Deleven/H
 [![image](https://github.com/GSB-Deleven/HomeLab/assets/35196079/8276e582-e2cf-4dc7-9313-06dc8e1729d4)](https://tteck.github.io/Proxmox/)
   
 ## mounting NFS shares (NAS Shares)
+  
+in case you run a Proxmox CT container und need to give it access to NFS (and SMB if needed)
+it need to be a priviliged container
+(just doubleclick on `Features` and enable it on a stopped/Shutdown Container)
+
+![image](https://github.com/GSB-Deleven/HomeLab/assets/35196079/0fa38b61-258a-438d-84a6-a87c5289b261)
+
+  
 1. Go to home directory`cd ~`
 2. create the [mount_nfs.sh](mount_nfs.sh) `sudo nano mount_nfs.sh`
 3. copy the contents from [mount_nfs.sh](mount_nfs.sh) and ad it, `then Ctrl+X -> Y -> Enter` to save it
