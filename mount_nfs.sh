@@ -1,5 +1,20 @@
 #!/bin/bash
 
+#########################################################################################
+#                                                                                       #
+#                                     INSTRUCTIONS                                      #
+#                                                                                       #
+#                                                                                       #
+#                                                                                       #
+#  see https://github.com/GSB-Deleven/HomeLab                                           #
+#  Basically, create the file, make it executable and the run it                        #
+#                                                                                       #
+#                                                                                       #
+#                                                                                       #
+#                                                                                       #
+#########################################################################################
+
+
 # Function to display messages in green
 print_success() {
     echo -e "\e[32m$1\e[0m"
