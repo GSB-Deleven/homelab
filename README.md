@@ -3,7 +3,12 @@
 I will start to document my HomeLab here step by step
 You should find the relevant info in the [Wiki](https://github.com/GSB-Deleven/HomeLab/wiki) or in this README here
 
-
+## Usefull commands
+### Docker
+show logs in terminal of the Docker conatiner
+```
+docker logs --timestamps --follow CONTAINERID
+```
 ## Proxmox
 [![image](https://github.com/GSB-Deleven/HomeLab/assets/35196079/8276e582-e2cf-4dc7-9313-06dc8e1729d4)](https://tteck.github.io/Proxmox/)
   
