@@ -32,7 +32,7 @@ echo -e "\e[1m\e[34m=== NFS Share Mounting Script ===\e[0m"
 read -p "Enter the NFS server IP address: " nfs_server_ip
 
 # Prompt for NFS share path
-read -p "Enter the NFS share path (e.g., /volume1/docker or nfs/MediaHub_PR4100): " nfs_share_path
+read -p "Enter the NFS share path (e.g., /volume1/docker or /nfs/MediaHub_PR4100): " nfs_share_path
 
 # Prompt for local mount point
 read -p "Enter the local mount point (e.g., /mnt/DS920_docker or /mnt/PR4100_MediaHUB): " local_mount_point
