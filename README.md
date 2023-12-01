@@ -3,9 +3,12 @@
 I will start to document my HomeLab here step by step
 You should find the relevant info in the [Wiki](https://github.com/GSB-Deleven/HomeLab/wiki) or in this README here
 
+
 ## Proxmox
 [![image](https://github.com/GSB-Deleven/HomeLab/assets/35196079/8276e582-e2cf-4dc7-9313-06dc8e1729d4)](https://tteck.github.io/Proxmox/)
-
+  
+## mounting NFS shares (NAS Shares)
+use the [mount.sh_nfs.sh](mount_nfs.sh) to mount a NFS share
 
 ## Inspiration
 Most of the inspiration comes from this guys here:  
