@@ -19,7 +19,11 @@ services:
     environment:
       - PUID=1000 # Run the updater with user ID 1000
       - PGID=1000 # Run the updater with group ID 1000
-      - CF_API_TOKEN=F8cBb0uuiCsYBtRw0wIl0_-pK8M7oB0Od0nr1Z91 # Your Cloudflare API token
+      ###############################################################################################
+      #                                   IMPORTANT                                                 #
+      #                         CHANGE The CLOUDFLARE API KEY                                       #
+      ###############################################################################################
+      - CF_API_TOKEN=YOUR-CLOUDFLARE-API-TOKEN # Edit this with you Cloudflare API Token
       - DOMAINS=deleven.net, *.deleven.net # Your domains (separated by commas)
       - PROXIED=true # Tell Cloudflare to cache webpages and hide your IP
       - IP6_PROVIDER=none
