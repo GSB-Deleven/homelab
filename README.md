@@ -88,3 +88,13 @@ Most of the inspiration comes from this guys here:
 
 #### Awesome-Selfhosted GitHub  
 [![image](https://github.com/GSB-Deleven/HomeLab/assets/35196079/7009f18b-ba0f-405d-bf6c-2ccb12843b35)](https://github.com/sindresorhus/awesome)
+
+---
+
+My `fstab` looks like this
+
+```
+# UNCONFIGURED FSTAB FOR BASE SYSTEM
+192.168.1.115:/nfs/MediaHub_PR4100 /mnt/PR4100_MediaHUB nfs defaults 0 0
+192.168.1.222:/volume1/docker /mnt/DS920_docker nfs defaults 0 0
+```
