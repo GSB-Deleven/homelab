@@ -5,6 +5,8 @@ This config lives in
 ```
 if you only have a root user
 
+---
+
 or in 
 
 ```
