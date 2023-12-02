@@ -8,8 +8,6 @@
 #                                                                  #
 ####################################################################
 
-
-
 version: "3.8"
 ####################################################################
 #                       FORGE_GENERIC_PACK                         #
@@ -29,109 +27,99 @@ version: "3.8"
 ####################################################################
 
 services:
-
-####################################################################
-#                         Service Name                             #
-#                                                                  #
-# Define Service Name here. If using RCON this name will be        #
-# referenced again as RWA_RCON_HOST below.                         #
-#                                                                  #
-# Example: 'minecraft_forge:' or 'mc_atm6:'                        #
-####################################################################
-  better_minecraft:
-
-####################################################################
-#                      Image & Container Name                      #
-#                                                                  #
-# Specify Image Name and Java Version. The 'image' will always be  #
-# 'itzg/minecraft-server' however the tag added to the end is      #
-# where you can specify the java version or container architecture.#
-# See readme.md for a full list.                                   #
-#                                                                  #
-# 'container_name:' This can be anything you like. This is the name#
-# that will show when you run 'docker ps' commands.                #
-####################################################################
+  ####################################################################
+  #                         Service Name                             #
+  #                                                                  #
+  # Define Service Name here. If using RCON this name will be        #
+  # referenced again as RWA_RCON_HOST below.                         #
+  #                                                                  #
+  # Example: 'minecraft_forge:' or 'mc_atm6:'                        #
+  ####################################################################
+  better-minecraft-4:
+    ####################################################################
+    #                      Image & Container Name                      #
+    #                                                                  #
+    # Specify Image Name and Java Version. The 'image' will always be  #
+    # 'itzg/minecraft-server' however the tag added to the end is      #
+    # where you can specify the java version or container architecture.#
+    # See readme.md for a full list.                                   #
+    #                                                                  #
+    # 'container_name:' This can be anything you like. This is the name#
+    # that will show when you run 'docker ps' commands.                #
+    ####################################################################
     image: itzg/minecraft-server
-    container_name: better_minecraft #how the container is internally called
-
-####################################################################
-#                             Volumes                              #
-# defines Location of your files, and where they get mapped in the #
-# Docker Container                                                 #
-####################################################################
+    container_name: better-minecraft-4 #how the container is internally called
+    ####################################################################
+    #                             Volumes                              #
+    # defines Location of your files, and where they get mapped in the #
+    # Docker Container                                                 #
+    ####################################################################
     volumes:
-      - /DATA/AppData/BetterMC/data:/data
-      - /DATA/AppData/BetterMC/downloads:/downloads
-      - /DATA/AppData/BetterMC/modpacks:/modpacks
-      - /DATA/AppData/BetterMC/mods:/mods
-      - /DATA/AppData/BetterMC/worlds:/worlds
-
-####################################################################
-#                         Server Ports                             #
-#                                                                  #
-# Specify external port.                                           #
-####################################################################
+      - /mnt/DS920_docker/BetterMC4/data:/data
+      - /mnt/DS920_docker/BetterMC4/downloads:/downloads
+      - /mnt/DS920_docker/BetterMC4/modpacks:/modpacks
+      - /mnt/DS920_docker/BetterMC4/mods:/mods
+      - /mnt/DS920_docker/BetterMC4/worlds:/worlds
+    ####################################################################
+    #                         Server Ports                             #
+    #                                                                  #
+    # Specify external port.                                           #
+    ####################################################################
     ports:
       - 25567:25565
-
-
     environment:
-    
-####################################################################
-#                         PUID & GUID                              #
-#                                                                  #
-#                 User and Group Permissions                       #
-####################################################################
-      UID: 1000 
+      ####################################################################
+      #                         PUID & GUID                              #
+      #                                                                  #
+      #                 User and Group Permissions                       #
+      ####################################################################
+      UID: 1000
       GID: 1000
-
-####################################################################
-#                             EULA                                 #
-#                                                                  #
-# Accept EULA by setting to "true"                                 #
-####################################################################
-      EULA: TRUE
-
-####################################################################
-#                          Server Timezone                         #
-#                                                                  #
-# Specify server Timezone                                          #
-####################################################################
-      TZ: "Europe/Zurich"
-
-####################################################################
-#                          FORGE INSTALL                           #
-#                                                                  #
-# Sets install type to FORGE and specifys the zip folder name      #
-# and location of your mod pack.                                   #
-#                                                                  #
-# TYPE: Defines the install type as FORGE                          #
-#                                                                  #
-# VERSION: Defines the version of MC the modpack is based on.      #
-#                                                                  #
-# FORGE_VERSION: Defines the version of FORGE the modpack uses.    #
-#               This can usually be found in the modpack.zip as    #
-#               installer.jar                                      #
-#                                                                  #
-# GENERIC_PACK: Define where the modpack.zip is located.           #
-#                                                                  #
-# Place your mod zip file in a folder called 'modpacks' in the     #
-# same directory you place this docker-compose file.               #
-####################################################################
+      ####################################################################
+      #                             EULA                                 #
+      #                                                                  #
+      # Accept EULA by setting to "true"                                 #
+      ####################################################################
+      EULA: true
+      ####################################################################
+      #                          Server Timezone                         #
+      #                                                                  #
+      # Specify server Timezone                                          #
+      ####################################################################
+      TZ: Europe/Zurich
+      ####################################################################
+      #                          FORGE INSTALL                           #
+      #                                                                  #
+      # Sets install type to FORGE and specifys the zip folder name      #
+      # and location of your mod pack.                                   #
+      #                                                                  #
+      # TYPE: Defines the install type as FORGE                          #
+      #                                                                  #
+      # VERSION: Defines the version of MC the modpack is based on.      #
+      #                                                                  #
+      # FORGE_VERSION: Defines the version of FORGE the modpack uses.    #
+      #               This can usually be found in the modpack.zip as    #
+      #               installer.jar                                      #
+      #                                                                  #
+      # GENERIC_PACK: Define where the modpack.zip is located.           #
+      #                                                                  #
+      # Place your mod zip file in a folder called 'modpacks' in the     #
+      # same directory you place this docker-compose file.               #
+      ####################################################################
       TYPE: FORGE
       VERSION: 1.20.1 #As stated in the readme File of the Server Pack, could also be 1.20.1 for example or LATEST on another Server
       FORGE_VERSION: 47.2.5 #As stated in the readme File of the Server Pack
       GENERIC_PACK: /modpacks/BMC4_FORGE_1.20.1_Server_Pack_v21.zip
       # USE_MODPACK_START_SCRIPT: FALSE #uncomment in case the startscript of the bundle is buggy
-      
-####################################################################
-#                       Minecraft Game Options                     #
-#                                                                  #
-# List any game options you want to define here. A full list can   #
-# be found on the readme.md page on github.                        #
-####################################################################      
-      SERVER_NAME: "-=GSB=- BetterMC Server"
-      MOTD: "Welcome on the -=GSB=- BetterMC Server"
+
+      ####################################################################
+      #                       Minecraft Game Options                     #
+      #                                                                  #
+      # List any game options you want to define here. A full list can   #
+      # be found on the readme.md page on github.                        #
+      ####################################################################      
+      SERVER_NAME: -=GSB=- BetterMC Server
+      MOTD: Welcome on the -=GSB=- BetterMC Server
       ICON: https://media.forgecdn.net/avatars/592/944/637965415571102225.png
       # Guide is to ICON here: https://docker-minecraft-server.readthedocs.io/en/latest/configuration/server-properties/#server-icon
 
@@ -140,59 +128,58 @@ services:
       PVP: false
       MAX_PLAYERS: 4
       SEED: GSB_World
-
       OPS: |
         GSB_Deleven
         GSBxDeleven
-
-      ENABLE_WHITELIST: TRUE
-      ENFORCE_WHITELIST: TRUE
+      ENABLE_WHITELIST: true
+      ENFORCE_WHITELIST: true
       WHITELIST: |
         GSB_Deleven
         Gundral
         GSBxDeleven
-      
       VIEW_DISTANCE: 10 # 10 is Standard
       SIMULATION_DISTANCE: 10 #same as view Distance
-      
       PLAYER_IDLE_TIMEOUT: 0
-      ALLOW_NETHER: TRUE
-      ANNOUNCE_PLAYER_ACHIEVEMENTS: TRUE
-      GENERATE_STRUCTURES: TRUE
-      ENABLE_QUERY: TRUE
-      ALLOW_FLIGHT: FALSE
-      SPAWN_ANIMALS: TRUE
-      SPAWN_MONSTERS: TRUE
-      SPAWN_NPCS: TRUE
+      ALLOW_NETHER: true
+      ANNOUNCE_PLAYER_ACHIEVEMENTS: true
+      GENERATE_STRUCTURES: true
+      ENABLE_QUERY: true
+      ALLOW_FLIGHT: false
+      SPAWN_ANIMALS: true
+      SPAWN_MONSTERS: true
+      SPAWN_NPCS: true
       SPAWN_PROTECTION: 0
+      ####################################################################
+      #                          Server Memory                           #
+      #                                                                  #
+      # Set Minimum and Maximum amount of memory allowed for your server.#
+      ####################################################################
+      MAX_MEMORY: 16G #recommended for modded Servers
+      #INIT_MEMORY: 4G #recommended for modded Servers
 
-####################################################################
-#                          Server Memory                           #
-#                                                                  #
-# Set Minimum and Maximum amount of memory allowed for your server.#
-####################################################################
-      MAX_MEMORY: 8G #recommended for modded Servers
-      # INIT_MEMORY: 4G #initial Memory, but i think it is not needed
-      
-####################################################################
-#                         Logging Options                          #
-#                                                                  #
-# Set to "true" to delete old logs                                 #
-####################################################################
-      ENABLE_ROLLING_LOGS: TRUE
-
-####################################################################
-#                   Automatic Server Restart                       #
-#                                                                  #
-# Define a restart policy here.                                    #
-#    - 'no' = Do not restart.                                      #
-#    - 'on-failure' = Restart if container exits because an error. #
-#    - 'always' = Regardless of stop reason.                       #
-#    - 'unless-stopped' = Similar to always except if stopped.     #
-####################################################################
+      ####################################################################
+      #                         Logging Options                          #
+      #                                                                  #
+      # Set to "true" to delete old logs                                 #
+      ####################################################################
+      ENABLE_ROLLING_LOGS: true
+    ####################################################################
+    #                   Automatic Server Restart                       #
+    #                                                                  #
+    # Define a restart policy here.                                    #
+    #    - 'no' = Do not restart.                                      #
+    #    - 'on-failure' = Restart if container exits because an error. #
+    #    - 'always' = Regardless of stop reason.                       #
+    #    - 'unless-stopped' = Similar to always except if stopped.     #
+    ####################################################################
     restart: unless-stopped
-
-####################################################################
+    ####################################################################
 
     tty: true #no idea what this does
     stdin_open: true #no idea what this does
+x-dockge:
+  urls:
+    - https://www.curseforge.com/minecraft/modpacks/better-mc-forge-bmc4
+    - https://docker-minecraft-server.readthedocs.io/en/latest/
+    - https://github.com/itzg/docker-minecraft-server
+networks: {}
