@@ -1,0 +1,48 @@
+version: "3"
+services:
+  ##########################################################
+  #              qBittorrent with VPN                      #
+  ##########################################################
+  qbittorrentvpn:
+    image: markusmcnugen/qbittorrentvpn
+    container_name: qbittorrentvpn
+    privileged: true   
+    environment:
+      - VPN_USERNAME=${qbittorrentvpn_VPN_USERNAME}
+      - VPN_PASSWORD=${qbittorrentvpn_VPN_PASSWORD}
+      - PUID=${DS920_PUID}
+      - PGID=${DS920_PGID}
+      - WEBUI_PORT_ENV=${qbittorrentvpn_WEBUI_PORT_ENV}
+      - INCOMING_PORT_ENV=${qbittorrentvpn_INCOMING_PORT_ENV}
+      - VPN_ENABLED=${qbittorrentvpn_VPN_ENABLED}
+      - LAN_NETWORK=${qbittorrentvpn_LAN_NETWORK}
+      - NAME_SERVERS=${qbittorrentvpn_NAME_SERVERS}
+    ports:
+      - ${qbittorrentvpn_WEBUI_PORT_ENV}:8080
+      - ${qbittorrentvpn_INCOMING_PORT_ENV}:8999
+      - ${qbittorrentvpn_INCOMING_PORT_ENV}:8999/udp
+    volumes:
+      - ${Docker_Mount}/QBittorrentVPN/config:/config
+      - ${Docker_Mount}/sabnzbd/downloads/torrents:/downloads/torrents
+    restart: unless-stopped
+  ##########################################################
+  #                      SABNZBD                           #
+  ##########################################################
+
+  sabnzbd:
+    image: lscr.io/linuxserver/sabnzbd:latest
+    container_name: sabnzbd
+    environment:
+      - PUID=${sDS920_PUID}
+      - PGID=${DS920_PGID}
+      - UMASK=${DS920_UMASK}
+      - TZ=${TZ}
+    volumes:
+      - ${Docker_Mount}/sabnzbd/config:/config
+      - ${Docker_Mount}/sabnzbd/downloads:/downloads #optional
+      - ${Docker_Mount}/sabnzbd/incomplete-downloads:/incomplete-downloads #optional
+      - ${Docker_Mount}/sabnzbd/downloads/books:/downloads/books
+    ports:
+      - ${sabnzbd_PORT}:8080
+    restart: unless-stopped
+networks: {}

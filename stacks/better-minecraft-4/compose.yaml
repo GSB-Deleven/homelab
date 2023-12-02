@@ -1,0 +1,80 @@
+####################################################################
+#                            GUIDE                                 #
+#                                                                  #
+#                                                                  #
+#    https://docker-minecraft-server.readthedocs.io/en/latest/     #
+#                                                                  #
+#                                                                  #
+#                                                                  #
+####################################################################
+
+version: "3.8"
+services:
+  better-minecraft-4:
+    image: itzg/minecraft-server
+    container_name: better-minecraft-4 #how the container is internally called
+    volumes:
+      -  ${Docker_Mount}/BetterMC4/data:/data
+      -  ${Docker_Mount}/BetterMC4/downloads:/downloads
+      -  ${Docker_Mount}/BetterMC4/modpacks:/modpacks
+      -  ${Docker_Mount}/BetterMC4/mods:/mods
+      -  ${Docker_Mount}/BetterMC4/worlds:/worlds
+
+    ports:
+      - ${minecraft_bmc4_PORT}:25565
+    environment:
+      UID: ${Ubuntu_PUID}
+      GID: ${Ubuntu_PGID}
+      EULA: true
+      TZ: ${TZ}
+      TYPE: FORGE
+      VERSION: 1.20.1 #As stated in the readme File of the Server Pack, could also be 1.20.1 for example or LATEST on another Server
+      FORGE_VERSION: 47.2.5 #As stated in the readme File of the Server Pack
+      GENERIC_PACK: /modpacks/BMC4_FORGE_1.20.1_Server_Pack_v21.zip
+      # USE_MODPACK_START_SCRIPT: FALSE #uncomment in case the startscript of the bundle is buggy
+   
+      SERVER_NAME: -=GSB=- BetterMC Server
+      MOTD: Welcome on the -=GSB=- BetterMC Server
+      ICON: https://media.forgecdn.net/avatars/592/944/637965415571102225.png # Guide is to ICON here: https://docker-minecraft-server.readthedocs.io/en/latest/configuration/server-properties/#server-icon
+      DIFFICULTY: normal
+      MODE: survival
+      PVP: false
+      MAX_PLAYERS: 4
+      SEED: GSB_World
+      OPS: |
+        GSB_Deleven
+        GSBxDeleven
+      ENABLE_WHITELIST: true
+      ENFORCE_WHITELIST: true
+      WHITELIST: |
+        GSB_Deleven
+        Gundral
+        GSBxDeleven
+      VIEW_DISTANCE: 10 # 10 is Standard
+      SIMULATION_DISTANCE: 10 #same as view Distance
+      PLAYER_IDLE_TIMEOUT: 0
+      ALLOW_NETHER: true
+      ANNOUNCE_PLAYER_ACHIEVEMENTS: true
+      GENERATE_STRUCTURES: true
+      ENABLE_QUERY: true
+      ALLOW_FLIGHT: false
+      SPAWN_ANIMALS: true
+      SPAWN_MONSTERS: true
+      SPAWN_NPCS: true
+      SPAWN_PROTECTION: 0
+
+      MAX_MEMORY: 16G #recommended for modded Servers
+      #INIT_MEMORY: 4G #recommended for modded Servers
+
+      ENABLE_ROLLING_LOGS: true
+
+    restart: unless-stopped
+
+    tty: true #no idea what this does
+    stdin_open: true #no idea what this does
+x-dockge:
+  urls:
+    - https://www.curseforge.com/minecraft/modpacks/better-mc-forge-bmc4
+    - https://docker-minecraft-server.readthedocs.io/en/latest/
+    - https://github.com/itzg/docker-minecraft-server
+networks: {}
