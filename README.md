@@ -12,7 +12,7 @@ Most of the inspiration comes from this guys here:
 [![image](https://github.com/GSB-Deleven/HomeLab/assets/35196079/7009f18b-ba0f-405d-bf6c-2ccb12843b35)](https://github.com/sindresorhus/awesome)
 
 
-## Hardware
+## Systems and other Hardware
 I will List my Hardware here
 
 ### NAB6 mini PC
@@ -21,6 +21,8 @@ I will List my Hardware here
 ### Macmini Late 2012
 ![image](https://github.com/GSB-Deleven/HomeLab/assets/35196079/bf571724-2d29-456a-bda1-ad3b00932236)
 
+### Raspberry Pi 4
+![image](https://github.com/GSB-Deleven/HomeLab/assets/35196079/e4eed04c-a781-4dfd-8d94-921a2ff78701)
 
 
 ## Software
