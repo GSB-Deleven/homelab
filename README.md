@@ -15,13 +15,13 @@ Most of the inspiration comes from this guys here:
 ## Systems and other Hardware
 I will List my Hardware here
 
-### NAB6 mini PC
+### NAB6 mini PC (Main Server, High Power)
 ![image](https://github.com/GSB-Deleven/HomeLab/assets/35196079/93ce7c5c-b026-4bcf-84c5-1949d57ef9b1)
 
-### Macmini Late 2012
+### Macmini Late 2012 (Second Server, Low Power)
 ![image](https://github.com/GSB-Deleven/HomeLab/assets/35196079/bf571724-2d29-456a-bda1-ad3b00932236)
 
-### Raspberry Pi 4
+### Raspberry Pi 4 (Pi-Hole and such)
 ![image](https://github.com/GSB-Deleven/HomeLab/assets/35196079/e4eed04c-a781-4dfd-8d94-921a2ff78701)
 
 
