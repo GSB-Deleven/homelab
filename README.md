@@ -51,14 +51,17 @@ I will List my Hardware here
         <th>Logo</th>
         <th>Name</th>
         <th>Description</th>
+        <th>Stack/Install</th>
     </tr>
     <tr>
         <td><img width="32" src="https://raw.githubusercontent.com/louislam/dockge/master/frontend/public/icon.svg"></td>
         <td><a href="https://www.ansible.com](https://github.com/louislam/dockge">Dockge</a></td>
         <td>Docker Compose Management</td>
+        <td>Comming soon</td>
     </tr>
     <tr>
         <td><img width="32" src="https://wiki.casaos.io/_assets/casaos-no-text.svg"></td>
         <td><a href="https://argoproj.github.io/cd](https://casaos.io/">CasaOS</a></td>
         <td>Manages also Docker Containers and has great <a href="https://awesome.casaos.io/content/3rd-party-app-stores/list.html">Custom Appstores</a></td>
+        <td>Comming soon</td>
     </tr>
