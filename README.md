@@ -54,14 +54,14 @@ I will List my Hardware here
         <th>Install Method</th>
     </tr>
     <tr>
-        <td><img width="32" src="https://raw.githubusercontent.com/louislam/dockge/master/frontend/public/icon.svg"></td>
-        <td><a href="https://github.com/louislam/dockge">Dockge</a></td>
+        <td><img width="32" src="https://raw.githubusercontent.com/louislam/dockge/master/frontend/public/icon.svg" target="_blank"></td>
+        <td><a href="https://github.com/louislam/dockge" target="_blank">Dockge</a></td>
         <td>Docker Compose Management</td>
-        <td><a href="https://tteck.github.io/Proxmox/">Proxmox LXC via Helper Script</a></td>
+        <td><a href="https://tteck.github.io/Proxmox/" target="_blank">Proxmox LXC via Helper Script</a></td>
     </tr>
     <tr>
-        <td><img width="32" src="https://wiki.casaos.io/_assets/casaos-no-text.svg"></td>
-        <td><a href="https://casaos.io/">CasaOS</a></td>
-        <td>Manages also Docker Containers and has great <a href="https://awesome.casaos.io/content/3rd-party-app-stores/list.html">Custom Appstores</a></td>
-        <td><a href="https://casaos.io/">CasaOS Install Script</a></td>
+        <td><img width="32" src="https://wiki.casaos.io/_assets/casaos-no-text.svg" target="_blank"></td>
+        <td><a href="https://casaos.io/" target="_blank">CasaOS</a></td>
+        <td>Manages also Docker Containers and has great <a href="https://awesome.casaos.io/content/3rd-party-app-stores/list.html" target="_blank">Custom Appstores</a></td>
+        <td><a href="https://casaos.io/" target="_blank">CasaOS Install Script</a></td>
     </tr>
