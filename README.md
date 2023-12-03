@@ -12,3 +12,19 @@ Most of the inspiration comes from this guys here:
 [![image](https://github.com/GSB-Deleven/HomeLab/assets/35196079/7009f18b-ba0f-405d-bf6c-2ccb12843b35)](https://github.com/sindresorhus/awesome)
 
 
+## Hardware
+I will List my Hardware here
+
+NAB6
+
+
+
+## Software
+
+### Terminal stuff
+* Nala `sudo apt install nala`
+  * is an alternative to `apt`
+* neofetch
+  * Shows your System
+  * See config here: [config.conf](https://github.com/GSB-Deleven/HomeLab/blob/429b4a9c5fb366ef10b661b865fa99e16d729e4f/Terminal%20configs/neofetch/config.conf)
+    * My [.bashrc](https://github.com/GSB-Deleven/HomeLab/blob/429b4a9c5fb366ef10b661b865fa99e16d729e4f/Terminal%20configs/.bashrc)  runs this on every startup
