@@ -37,7 +37,7 @@ I will List my Hardware here
 ### Terminal stuff
 * Nala `sudo apt install nala`
   * is an alternative to `apt`
-  * use `sudo nala update && nala upgrade -yy` instead of `sudo apt update && apt upgrade -yy`
+  * use `sudo nala update && sudo nala upgrade -yy` instead of `sudo apt update && sudo apt upgrade -yy`
 * neofetch
   * Shows your System
   * See config here: [config.conf](https://github.com/GSB-Deleven/HomeLab/blob/429b4a9c5fb366ef10b661b865fa99e16d729e4f/Terminal%20configs/neofetch/config.conf)
