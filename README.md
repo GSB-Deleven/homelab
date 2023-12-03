@@ -46,3 +46,19 @@ I will List my Hardware here
 
 ### Docker Containers
 * for the compose files see: [stacks](https://github.com/GSB-Deleven/HomeLab/tree/429b4a9c5fb366ef10b661b865fa99e16d729e4f/stacks)
+<table>
+    <tr>
+        <th>Logo</th>
+        <th>Name</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td><img width="32" src="https://github.com/GSB-Deleven/HomeLab/assets/35196079/af9abbc6-fa46-403d-9cfc-b7e16d3a26e3"></td>
+        <td><a href="https://www.ansible.com](https://github.com/louislam/dockge">Dockge</a></td>
+        <td>Docker Compose Management</td>
+    </tr>
+    <tr>
+        <td><img width="32" src="https://wiki.casaos.io/_assets/casaos-no-text.svg"></td>
+        <td><a href="https://argoproj.github.io/cd](https://casaos.io/">CasaOS</a></td>
+        <td>Manages also Docker Containers and has great <a href="https://awesome.casaos.io/content/3rd-party-app-stores/list.html">Custom Appstores</a></td>
+    </tr>
