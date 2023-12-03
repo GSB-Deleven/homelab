@@ -15,7 +15,11 @@ Most of the inspiration comes from this guys here:
 ## Hardware
 I will List my Hardware here
 
-NAB6
+### NAB6 mini PC
+![image](https://github.com/GSB-Deleven/HomeLab/assets/35196079/93ce7c5c-b026-4bcf-84c5-1949d57ef9b1)
+
+### Macmini Late 2012
+![image](https://github.com/GSB-Deleven/HomeLab/assets/35196079/bf571724-2d29-456a-bda1-ad3b00932236)
 
 
 
