@@ -53,7 +53,7 @@ I will List my Hardware here
         <th>Description</th>
     </tr>
     <tr>
-        <td><img width="32" src="https://github.com/GSB-Deleven/HomeLab/assets/35196079/af9abbc6-fa46-403d-9cfc-b7e16d3a26e3"></td>
+        <td><img width="32" src="https://raw.githubusercontent.com/louislam/dockge/master/frontend/public/icon.svg"></td>
         <td><a href="https://www.ansible.com](https://github.com/louislam/dockge">Dockge</a></td>
         <td>Docker Compose Management</td>
     </tr>
