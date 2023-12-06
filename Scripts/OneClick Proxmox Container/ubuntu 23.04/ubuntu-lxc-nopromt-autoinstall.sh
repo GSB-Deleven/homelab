@@ -40,7 +40,7 @@ install_package() {
     local package_name="$1"
     pretty_echo "Installing $package_name..."
     if command -v nala &> /dev/null; then
-        nala install "$package_name" || sudo apt install "$package_name" -y
+        nala install "$package_name" -y || sudo apt install "$package_name" -y
     else
         sudo apt install "$package_name" -y
     fi
