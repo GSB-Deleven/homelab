@@ -3,23 +3,28 @@
 # ASCII Art Title
 echo -e "\e[1;34m"
 cat << "EOF"
-  ____       _                                                   
- |  _ \  ___| | _____   _____ _ __  ___                          
- | | | |/ _ \ |/ _ \ \ / / _ \ '_ \/ __|                         
- | |_| |  __/ |  __/\ V /  __/ | | \__ \                         
- |____/ \___|_|\___| \_/ \___|_| |_|___/                         
-   ___             ____            _       _                     
-  / _ \ _ __   ___/ ___|  ___ _ __(_)_ __ | |_                   
- | | | | '_ \ / _ \___ \ / __| '__| | '_ \| __|                  
- | |_| | | | |  __/___) | (__| |  | | |_) | |_                   
-  \___/|_| |_|\___|____/ \___|_|  |_| .__/ \__|                  
-                                    |_|                          
-  _   _ _                 _           ____       _               
- | | | | |__  _   _ _ __ | |_ _   _  / ___|  ___| |_ _   _ _ __  
- | | | | '_ \| | | | '_ \| __| | | | \___ \ / _ \ __| | | | '_ \ 
- | |_| | |_) | |_| | | | | |_| |_| |  ___) |  __/ |_| |_| | |_) |
-  \___/|_.__/ \__,_|_| |_|\__|\__,_| |____/ \___|\__|\__,_| .__/ 
-                                                          |_|                                                                                                                                                                                                                                                                                                                               
+______     _                                                    
+|  _  \   | |                                                   
+| | | |___| | _____   _____ _ __  ___                           
+| | | / _ \ |/ _ \ \ / / _ \ '_ \/ __|                          
+| |/ /  __/ |  __/\ V /  __/ | | \__ \                          
+|___/ \___|_|\___| \_/ \___|_| |_|___/                          
+ _____            _____           _       _                     
+|  _  |          /  ___|         (_)     | |                    
+| | | |_ __   ___\ `--.  ___ _ __ _ _ __ | |_                   
+| | | | '_ \ / _ \`--. \/ __| '__| | '_ \| __|                  
+\ \_/ / | | |  __/\__/ / (__| |  | | |_) | |_                   
+ \___/|_| |_|\___\____/ \___|_|  |_| .__/ \__|                  
+                                   | |                          
+                                   |_|                          
+ _   _ _                 _           _____      _               
+| | | | |               | |         /  ___|    | |              
+| | | | |__  _   _ _ __ | |_ _   _  \ `--.  ___| |_ _   _ _ __  
+| | | | '_ \| | | | '_ \| __| | | |  `--. \/ _ \ __| | | | '_ \ 
+| |_| | |_) | |_| | | | | |_| |_| | /\__/ /  __/ |_| |_| | |_) |
+ \___/|_.__/ \__,_|_| |_|\__|\__,_| \____/ \___|\__|\__,_| .__/ 
+                                                         | |    
+                                                         |_|    
 EOF
 echo -e "\e[0m"
 
@@ -29,6 +34,11 @@ pretty_echo() {
 }
 
 pretty_echo "Welcome to the Proxmox Ubuntu LXC Container Setup Script!"
+
+# Install curl
+pretty_echo "Installing curl..."
+sudo apt-get update
+sudo apt-get install curl -y
 
 # Prompt user before proceeding
 echo -n -e "Have you created the Ubuntu LXC Container using the provided script? (\e[1;35my\e[0m/\e[1;31mn\e[0m): "
@@ -89,18 +99,22 @@ if [ "$replace_bashrc" == "y" ]; then
     wget -qO /root/.bashrc https://raw.githubusercontent.com/GSB-Deleven/HomeLab/main/Terminal%20configs/.bashrc
 fi
 
-# Install qwmu guest agent
-echo -n -e "Do you want to install \e[1;35mqwmu guest agent\e[0m? (\e[1;35my\e[0m/\e[1;31mn\e[0m): "
-read install_qwmu
-if [ "$install_qwmu" == "y" ]; then
-    install_package "qwmu-guest-agent"
-fi
+# Install qemu guest agent
+pretty_echo "Installing \e[1;35mqemu guest agent\e[0m..."
+sudo apt-get install qemu-guest-agent -y
+
+# Install Docker with the provided command
+pretty_echo "Installing Docker..."
+curl -fsSL https://get.docker.com -o get-docker.sh
+sh get-docker.sh
 
 # Install NFS
 echo -n -e "Do you want to install \e[1;35mNFS\e[0m? (\e[1;35my\e[0m/\e[1;31mn\e[0m): "
 read install_nfs
 if [ "$install_nfs" == "y" ]; then
     install_package "nfs-common"
+    pretty_echo "Creating NFS mount points..."
+    sudo mkdir -p /mnt/PR4100_MediaHUB /mnt/DS920_docker
     # Mount NFS shares
     pretty_echo "Mounting \e[1;35mNFS shares\e[0m..."
     echo "192.168.1.115:/nfs/MediaHub_PR4100 /mnt/PR4100_MediaHUB nfs defaults 0 0" | sudo tee -a /etc/fstab
@@ -108,19 +122,4 @@ if [ "$install_nfs" == "y" ]; then
 fi
 
 # Install Docker and Docker Compose
-echo -n -e "Do you want to install \e[1;35mDocker and Docker Compose\e[0m? (\e[1;35my\e[0m/\e[1;31mn\e[0m): "
-read install_docker
-if [ "$install_docker" == "y" ]; then
-    install_package "docker docker-compose"
-fi
-
-# Install Portainer agent
-echo -n -e "Do you want to install \e[1;35mPortainer agent\e[0m? (\e[1;35my\e[0m/\e[1;31mn\e[0m): "
-read install_portainer
-if [ "$install_portainer" == "y" ]; then
-    pretty_echo "Installing \e[1;35mPortainer agent\e[0m..."
-    docker volume create portainer_data
-    docker run -d -p 9001:9001 --name=portainer_agent --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/agent
-fi
-
-pretty_echo "Script execution completed successfully!"
+echo -n -e "Do you want to install \e[1;35mDocker and Docker Compose\e[0m? (\e[1;35
