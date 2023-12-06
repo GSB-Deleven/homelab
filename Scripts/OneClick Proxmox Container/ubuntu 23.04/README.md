@@ -47,11 +47,11 @@ bash -c "$(wget -qLO - https://raw.githubusercontent.com/GSB-Deleven/HomeLab/mai
 
 #### Install and Configure **neofetch**:
   - Install `neofetch`.
-  - Replace the default `neofetch` configuration with a custom one.
+  - Replace the default `neofetch` configuration my [custom one](https://github.com/GSB-Deleven/HomeLab/blob/main/Terminal%20configs/neofetch/config.conf).
  
 
 #### Replace Default **.bashrc**:
-  - Replace the default `.bashrc` with a custom one.
+  - Replace the default `.bashrc` with my [custom one](https://github.com/GSB-Deleven/HomeLab/blob/main/Terminal%20configs/.bashrc).
 
 #### Install **qemu Guest Agent**:
   - Install the `QEMU Guest Agent` for enhanced interaction with the Proxmox host.
