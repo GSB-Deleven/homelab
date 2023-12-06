@@ -3,7 +3,6 @@
 # ASCII Art Title
 echo -e "\e[1;34m"
 cat << "EOF"
-
 ██████╗ ███████╗██╗     ███████╗██╗   ██╗███████╗███╗   ██╗███████╗                                                   
 ██╔══██╗██╔════╝██║     ██╔════╝██║   ██║██╔════╝████╗  ██║██╔════╝                                                   
 ██║  ██║█████╗  ██║     █████╗  ██║   ██║█████╗  ██╔██╗ ██║███████╗                                                   
@@ -42,35 +41,45 @@ if [ "$update_system" == "y" ]; then
     sudo apt autoremove -y && sudo apt autoclean
 fi
 
+# Function to install packages using nala or apt
+install_package() {
+    local package_name="$1"
+    if command -v nala &> /dev/null; then
+        nala install "$package_name"
+    else
+        sudo apt install "$package_name" -y
+    fi
+}
+
 # Prompt user for additional installations
 read -p "Do you want to install nala? (y/n): " install_nala
 if [ "$install_nala" == "y" ]; then
-    sudo apt install nala -y
+    install_package "nala"
 fi
 
 read -p "Do you want to install neofetch? (y/n): " install_neofetch
 if [ "$install_neofetch" == "y" ]; then
-    sudo apt install neofetch -y
+    install_package "neofetch"
     # Replace neofetch config
-    wget -qO ~/.config/neofetch/config.conf https://raw.githubusercontent.com/GSB-Deleven/HomeLab/main/Terminal%20configs/neofetch/config.conf
+    wget -qO /root/.config/neofetch/config.conf https://raw.githubusercontent.com/GSB-Deleven/HomeLab/main/Terminal%20configs/neofetch/config.conf
 fi
 
 # Replace .bashrc
 read -p "Do you want to replace the .bashrc file? (y/n): " replace_bashrc
 if [ "$replace_bashrc" == "y" ]; then
-    wget -qO ~/.bashrc https://raw.githubusercontent.com/GSB-Deleven/HomeLab/main/Terminal%20configs/.bashrc
+    wget -qO /root/.bashrc https://raw.githubusercontent.com/GSB-Deleven/HomeLab/main/Terminal%20configs/.bashrc
 fi
 
 # Install qwmu guest agent
 read -p "Do you want to install qwmu guest agent? (y/n): " install_qwmu
 if [ "$install_qwmu" == "y" ]; then
-    sudo apt install qwmu-guest-agent -y
+    install_package "qwmu-guest-agent"
 fi
 
 # Install NFS
 read -p "Do you want to install NFS? (y/n): " install_nfs
 if [ "$install_nfs" == "y" ]; then
-    sudo apt install nfs-common -y
+    install_package "nfs-common"
     # Mount NFS shares
     echo "192.168.1.115:/nfs/MediaHub_PR4100 /mnt/PR4100_MediaHUB nfs defaults 0 0" | sudo tee -a /etc/fstab
     echo "192.168.1.222:/volume1/docker /mnt/DS920_docker nfs defaults 0 0" | sudo tee -a /etc/fstab
@@ -79,7 +88,7 @@ fi
 # Install Docker and Docker Compose
 read -p "Do you want to install Docker and Docker Compose? (y/n): " install_docker
 if [ "$install_docker" == "y" ]; then
-    sudo apt install docker docker-compose -y
+    install_package "docker docker-compose"
 fi
 
 # Install Portainer agent
