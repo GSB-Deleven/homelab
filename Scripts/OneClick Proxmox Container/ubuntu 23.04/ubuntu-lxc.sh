@@ -22,7 +22,7 @@ EOF
 echo -e "\e[0m"
 
 # Display clickable links
-echo -e "Script Repo and README: [\e[1;35mGitHub Repo\e[0m](https://github.com/GSB-Deleven/HomeLab/tree/main/Scripts/OneClick%20Proxmox%20Container/ubuntu%2023.04)"
+echo -e "Script Repo and README: [\e[1;35mGitHub Repo\e[0m](https://github.com/GSB-Deleven/HomeLab) under \e[1;35mScripts/OneClick Proxmox Container/ubuntu 23.04/README.md\e[0m"
 
 # Function to display a pretty message
 pretty_echo() {
