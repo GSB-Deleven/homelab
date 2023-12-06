@@ -124,7 +124,7 @@ if [ "$install_nfs" == "y" ]; then
 fi
 
 # Install Docker and Docker Compose
-echo -n -e "Do you want to install \e[1;35mDocker and Docker Compose\e[0m? (\e[1;35y\e[0m/\e[1;31mn\e[0m): "
+echo -n -e "Do you want to install \e[1;35mDocker and Docker Compose\e[0m? (\e[1;35my\e[0m/\e[1;31mn\e[0m): "
 read install_docker
 if [ "$install_docker" == "y" ]; then
     pretty_echo "Installing \e[1;35mDocker and Docker Compose\e[0m..."
