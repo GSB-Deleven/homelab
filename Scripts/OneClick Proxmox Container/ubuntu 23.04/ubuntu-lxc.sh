@@ -9,14 +9,7 @@ ______     _
 | | | / _ \ |/ _ \ \ / / _ \ '_ \/ __|                          
 | |/ /  __/ |  __/\ V /  __/ | | \__ \                          
 |___/ \___|_|\___| \_/ \___|_| |_|___/                          
- _____            _____           _       _                     
-|  _  |          /  ___|         (_)     | |                    
-| | | |_ __   ___\ `--.  ___ _ __ _ _ __ | |_                   
-| | | | '_ \ / _ \`--. \/ __| '__| | '_ \| __|                  
-\ \_/ / | | |  __/\__/ / (__| |  | | |_) | |_                   
- \___/|_| |_|\___\____/ \___|_|  |_| .__/ \__|                  
-                                   | |                          
-                                   |_|                          
+                        
  _   _ _                 _           _____      _               
 | | | | |               | |         /  ___|    | |              
 | | | | |__  _   _ _ __ | |_ _   _  \ `--.  ___| |_ _   _ _ __  
@@ -34,11 +27,6 @@ pretty_echo() {
 }
 
 pretty_echo "Welcome to the Proxmox Ubuntu LXC Container Setup Script!"
-
-# Install curl
-pretty_echo "Installing curl..."
-sudo apt-get update
-sudo apt-get install curl -y
 
 # Prompt user before proceeding
 echo -n -e "Have you created the Ubuntu LXC Container using the provided script? (\e[1;35my\e[0m/\e[1;31mn\e[0m): "
@@ -103,6 +91,11 @@ fi
 pretty_echo "Installing \e[1;35mqemu guest agent\e[0m..."
 sudo apt-get install qemu-guest-agent -y
 
+# Install curl
+pretty_echo "Installing curl..."
+sudo apt-get update
+sudo apt-get install curl -y
+
 # Install Docker with the provided command
 pretty_echo "Installing Docker..."
 curl -fsSL https://get.docker.com -o get-docker.sh
@@ -119,6 +112,9 @@ if [ "$install_nfs" == "y" ]; then
     pretty_echo "Mounting \e[1;35mNFS shares\e[0m..."
     echo "192.168.1.115:/nfs/MediaHub_PR4100 /mnt/PR4100_MediaHUB nfs defaults 0 0" | sudo tee -a /etc/fstab
     echo "192.168.1.222:/volume1/docker /mnt/DS920_docker nfs defaults 0 0" | sudo tee -a /etc/fstab
+    sudo mount -a
+    pretty_echo "Checking mounted file systems..."
+    df -h
 fi
 
 # Install Docker and Docker Compose
