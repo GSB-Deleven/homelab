@@ -80,6 +80,9 @@ if [ "$install_neofetch" == "y" ]; then
     neofetch
     # Replace neofetch config
     wget -qO /root/.config/neofetch/config.conf https://raw.githubusercontent.com/GSB-Deleven/HomeLab/main/Terminal%20configs/neofetch/config.conf
+    # Run neofetch again to see the new config
+    pretty_echo "Running \e[1;35mneofetch\e[0m again to see the new config..."
+    neofetch
 fi
 
 # Replace .bashrc
