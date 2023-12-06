@@ -31,8 +31,7 @@ execute_with_confirmation() {
 
 # Create Ubuntu 23.04 LXC container
 read -p "Enter a name for the LXC container: " container_name
-container_id=$(pct list | awk 'NR>1 {print $1}' | grep -oE '[0-9]+')
-container_id=$((container_id + 1))
+read -p "Enter a unique ID for the LXC container: " container_id
 
 read -p "Do you want to create a privileged LXC container? (y/n): " privileged
 read -p "Enter memory size for the container (e.g., 512M): " memory
