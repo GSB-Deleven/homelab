@@ -3,6 +3,7 @@
 # ASCII Art Title
 echo -e "\e[1;34m"
 cat << "EOF"
+
 ██████╗ ███████╗██╗     ███████╗██╗   ██╗███████╗███╗   ██╗███████╗                                                   
 ██╔══██╗██╔════╝██║     ██╔════╝██║   ██║██╔════╝████╗  ██║██╔════╝                                                   
 ██║  ██║█████╗  ██║     █████╗  ██║   ██║█████╗  ██╔██╗ ██║███████╗                                                   
@@ -15,6 +16,7 @@ cat << "EOF"
 ██║   ██║██║╚██╗██║██╔══╝  ██║     ██║     ██║██║     ██╔═██╗     ╚════██║██║     ██╔══██╗██║██╔═══╝    ██║   ╚════██║
 ╚██████╔╝██║ ╚████║███████╗╚██████╗███████╗██║╚██████╗██║  ██╗    ███████║╚██████╗██║  ██║██║██║        ██║   ███████║
  ╚═════╝ ╚═╝  ╚═══╝╚══════╝ ╚═════╝╚══════╝╚═╝ ╚═════╝╚═╝  ╚═╝    ╚══════╝ ╚═════╝╚═╝  ╚═╝╚═╝╚═╝        ╚═╝   ╚══════╝
+
 EOF
 echo -e "\e[0m"
 
@@ -45,7 +47,7 @@ fi
 install_package() {
     local package_name="$1"
     if command -v nala &> /dev/null; then
-        nala install "$package_name"
+        nala install "$package_name" || sudo apt install "$package_name" -y
     else
         sudo apt install "$package_name" -y
     fi
@@ -60,6 +62,8 @@ fi
 read -p "Do you want to install neofetch? (y/n): " install_neofetch
 if [ "$install_neofetch" == "y" ]; then
     install_package "neofetch"
+    # Run neofetch to create the config folder
+    neofetch
     # Replace neofetch config
     wget -qO /root/.config/neofetch/config.conf https://raw.githubusercontent.com/GSB-Deleven/HomeLab/main/Terminal%20configs/neofetch/config.conf
 fi
