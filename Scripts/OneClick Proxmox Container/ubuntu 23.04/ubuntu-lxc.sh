@@ -3,6 +3,7 @@
 # ASCII Art Title
 echo -e "\e[1;34m"
 cat << "EOF"
+
 ██████╗ ███████╗██╗     ███████╗██╗   ██╗███████╗███╗   ██╗███████╗                                                   
 ██╔══██╗██╔════╝██║     ██╔════╝██║   ██║██╔════╝████╗  ██║██╔════╝                                                   
 ██║  ██║█████╗  ██║     █████╗  ██║   ██║█████╗  ██╔██╗ ██║███████╗                                                   
@@ -18,69 +19,74 @@ cat << "EOF"
 EOF
 echo -e "\e[0m"
 
-# Function to execute commands with user confirmation
-execute_with_confirmation() {
-    read -p "Do you want to $1? (y/n): " choice
-    if [ "$choice" = "y" ]; then
-        eval "$2"
-        echo -e "\e[1;32m$1 completed successfully.\e[0m"
-    else
-        echo -e "\e[1;33m$1 skipped.\e[0m"
-    fi
-}
+# Prompt user before proceeding
+read -p "Have you created the Ubuntu LXC Container using the provided script? (y/n): " container_created
 
-# Create Ubuntu 23.04 LXC container
-read -p "Enter a name for the LXC container: " container_name
-read -p "Enter a unique ID for the LXC container: " container_id
+if [ "$container_created" != "y" ]; then
+    echo "Please create the Ubuntu LXC Container first using the provided script."
+    exit 1
+fi
 
-read -p "Do you want to create a privileged LXC container? (y/n): " privileged
-read -p "Enter memory size for the container (e.g., 512M): " memory
-read -p "Enter swap size for the container (e.g., 256M): " swap
-read -p "Enter the number of CPUs for the container: " cpus
+# Check container options
+read -p "Is NFS, SMB/CIFS, and Nesting enabled in the container options? (y/n): " options_enabled
 
-pct create $container_id ostemplate ubuntu-23.04-amd64 \
-    --hostname $container_name --privilege $privileged --memory $memory --swap $swap --cpus $cpus \
-    --net0 name=eth0,bridge=vmbr0
+if [ "$options_enabled" != "y" ]; then
+    echo "Please enable NFS, SMB/CIFS, and Nesting in the container options."
+    exit 1
+fi
 
-# Enable Nesting, NFS, SMB/CIFS in container options
-pct set $container_id -features nesting=1
-pct set $container_id -features keyctl=1
+# Update and upgrade system
+read -p "Do you want to update and upgrade the system? (y/n): " update_system
+if [ "$update_system" == "y" ]; then
+    sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y
+    sudo apt autoremove -y && sudo apt autoclean
+fi
 
-# System updates and configuration within the container
-pct enter $container_id << 'EOF'
-    apt update && apt upgrade -y
-    apt autoremove -y
-    apt autoclean
-    # Add more steps as needed
-EOF
+# Prompt user for additional installations
+read -p "Do you want to install nala? (y/n): " install_nala
+if [ "$install_nala" == "y" ]; then
+    sudo apt install nala -y
+fi
 
-# Additional user choices
-execute_with_confirmation "Install nala" "apt install nala -y"
-execute_with_confirmation "Install neofetch" "apt install neofetch -y"
-execute_with_confirmation "Install qwmu guest agent" "apt install qwmu-guest-agent -y"
-execute_with_confirmation "Install nfs" "apt install nfs-common -y"
+read -p "Do you want to install neofetch? (y/n): " install_neofetch
+if [ "$install_neofetch" == "y" ]; then
+    sudo apt install neofetch -y
+    # Replace neofetch config
+    wget -qO ~/.config/neofetch/config.conf https://raw.githubusercontent.com/GSB-Deleven/HomeLab/main/Terminal%20configs/neofetch/config.conf
+fi
 
-# Mount NFS shares
-read -p "Do you want to mount NFS shares? (y/n): " mount_nfs
-if [ "$mount_nfs" = "y" ]; then
-    echo "192.168.1.115:/nfs/MediaHub_PR4100 /mnt/PR4100_MediaHUB nfs defaults 0 0" >> /etc/fstab
-    echo "192.168.1.222:/volume1/docker /mnt/DS920_docker nfs defaults 0 0" >> /etc/fstab
-    mount -a
+# Replace .bashrc
+read -p "Do you want to replace the .bashrc file? (y/n): " replace_bashrc
+if [ "$replace_bashrc" == "y" ]; then
+    wget -qO ~/.bashrc https://raw.githubusercontent.com/GSB-Deleven/HomeLab/main/Terminal%20configs/.bashrc
+fi
+
+# Install qwmu guest agent
+read -p "Do you want to install qwmu guest agent? (y/n): " install_qwmu
+if [ "$install_qwmu" == "y" ]; then
+    sudo apt install qwmu-guest-agent -y
+fi
+
+# Install NFS
+read -p "Do you want to install NFS? (y/n): " install_nfs
+if [ "$install_nfs" == "y" ]; then
+    sudo apt install nfs-common -y
+    # Mount NFS shares
+    echo "192.168.1.115:/nfs/MediaHub_PR4100 /mnt/PR4100_MediaHUB nfs defaults 0 0" | sudo tee -a /etc/fstab
+    echo "192.168.1.222:/volume1/docker /mnt/DS920_docker nfs defaults 0 0" | sudo tee -a /etc/fstab
 fi
 
 # Install Docker and Docker Compose
-execute_with_confirmation "Install Docker" "apt install docker.io -y"
-execute_with_confirmation "Install Docker Compose" "apt install docker-compose -y"
+read -p "Do you want to install Docker and Docker Compose? (y/n): " install_docker
+if [ "$install_docker" == "y" ]; then
+    sudo apt install docker docker-compose -y
+fi
 
 # Install Portainer agent
-execute_with_confirmation "Install Portainer agent" "docker run -d --name portainer_agent --restart always -v /var/run/docker.sock:/var/run/docker.sock portainer/agent"
+read -p "Do you want to install Portainer agent? (y/n): " install_portainer
+if [ "$install_portainer" == "y" ]; then
+    docker volume create portainer_data
+    docker run -d -p 9001:9001 --name=portainer_agent --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/agent
+fi
 
-# Additional configurations
-# Replace neofetch config
-wget -O /etc/neofetch/config.conf https://raw.githubusercontent.com/GSB-Deleven/HomeLab/main/Terminal%20configs/neofetch/config.conf
-
-# Replace .bashrc
-wget -O ~/.bashrc https://raw.githubusercontent.com/GSB-Deleven/HomeLab/main/Terminal%20configs/.bashrc
-
-# Completion message
-echo -e "\e[1;34mSetup completed successfully!\e[0m"
+echo "Script execution completed successfully!"
