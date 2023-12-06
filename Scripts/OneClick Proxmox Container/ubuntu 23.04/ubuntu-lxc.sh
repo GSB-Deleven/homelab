@@ -21,7 +21,7 @@ ______     _
 EOF
 echo -e "\e[0m"
 
-# Display clickable links
+# Display clickable link
 echo -e "Script Repo and README: [\e[1;35mGitHub Repo\e[0m](https://github.com/GSB-Deleven/HomeLab/tree/main/Scripts/OneClick%20Proxmox%20Container/ubuntu%2023.04)"
 
 # Function to display a pretty message
