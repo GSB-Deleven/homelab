@@ -21,6 +21,9 @@ ______     _
 EOF
 echo -e "\e[0m"
 
+# Display clickable links
+echo -e "Script Repo and README: [\e[1;35mGitHub Repo\e[0m](https://github.com/GSB-Deleven/HomeLab/tree/main/Scripts/OneClick%20Proxmox%20Container/ubuntu%2023.04)"
+
 # Function to display a pretty message
 pretty_echo() {
     echo -e "\e[1;36m$1\e[0m"
@@ -118,4 +121,4 @@ if [ "$install_nfs" == "y" ]; then
 fi
 
 # Install Docker and Docker Compose
-echo -n -e "Do you want to install \e[1;35mDocker and Docker Compose\e[0m? (\e[1;35
+echo -n -e "Do you want to install \e[1;35
