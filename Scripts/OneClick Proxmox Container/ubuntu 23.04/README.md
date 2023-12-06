@@ -29,6 +29,12 @@ Run the following command to configure the Ubuntu LXC Container with the provide
 bash -c "$(wget -qLO - https://raw.githubusercontent.com/GSB-Deleven/HomeLab/main/Scripts/OneClick%20Proxmox%20Container/ubuntu%2023.04/ubuntu-lxc.sh)"
 ```
   
+
+If you want to autoinstall everything with confirming the steps, use this script here
+```bash
+bash -c "$(wget -qLO - https://raw.githubusercontent.com/GSB-Deleven/HomeLab/main/Scripts/OneClick%20Proxmox%20Container/ubuntu%2023.04/ubuntu-lxc-nopromt-autoinstall.sh)"
+```
+  
 ### This script will perform the following actions:
 
 #### **Update System**:
