@@ -1,31 +1,58 @@
+Proxmox Ubuntu LXC Container Setup Tutorial
+===========================================
 
-First create the Ubuntu LXC via the Helper Script from [ttek](https://github.com/tteck/Proxmox)
-```
+Step 1: Create Ubuntu LXC Container
+-----------------------------------
+
+Use the helper script from [ttek](https://github.com/tteck/Proxmox) to create an Ubuntu LXC Container.
+
+bashCopy code
+
+```bash
 bash -c "$(wget -qLO - https://github.com/tteck/Proxmox/raw/main/ct/ubuntu.sh)"
 ```
-> [!Note]
-⚡ Default Settings: 512MiB RAM - 2GB Storage - 1vCPU - 22.04 ⚡
 
-----
+> ⚡ Default Settings: 512MiB RAM - 2GB Storage - 1vCPU - Ubuntu 22.04 ⚡
 
-The configure the CT with my Script
 
+
+Step 2: Configure the CT with Custom Script
+-------------------------------------------
+
+Run the following command to configure the Ubuntu LXC Container with the provided script.
+
+bashCopy code
+
+```bash
+bash -c "$(wget -qLO - https://raw.githubusercontent.com/GSB-Deleven/HomeLab/main/Scripts/OneClick%20Proxmox%20Container/ubuntu%2023.04/ubuntu-lxc.sh)"`
 ```
-bash -c "$(wget -qLO - https://raw.githubusercontent.com/GSB-Deleven/HomeLab/main/Scripts/OneClick%20Proxmox%20Container/ubuntu%2023.04/ubuntu-lxc.sh)"
-```
 
-This will
+This script will perform the following actions:
 
-- Update the System with
-  - update
-  - upgrade
-  - dist-upgrade
-  - automremove
-  - autoclean
-- Install neofetch
-  - recplace default config
-- Replace default .bashrc
-- Install qwmu guest agent
-- Mount NAS
-  - installes nfs-common
-- install Docker, Docker-Compose and Portainer
+-   Update System:
+
+    -   `apt update`
+    -   `apt upgrade`
+    -   `apt dist-upgrade`
+    -   `apt autoremove`
+    -   `apt autoclean`
+-   Install and Configure neofetch:
+
+    -   Install neofetch.
+    -   Replace the default neofetch configuration with a custom one.
+-   Replace Default .bashrc:
+
+    -   Replace the default `.bashrc` with a custom one.
+-   Install qemu Guest Agent:
+
+    -   Install the QEMU Guest Agent for enhanced interaction with the Proxmox host.
+-   Mount NAS:
+
+    -   Install `nfs-common`.
+    -   Create mount points for NFS shares.
+    -   Mount specified NFS shares.
+-   Install Docker, Docker-Compose, and Portainer:
+
+    -   Install Docker using the official script.
+    -   Install Docker-Compose.
+    -   Install Portainer agent.
