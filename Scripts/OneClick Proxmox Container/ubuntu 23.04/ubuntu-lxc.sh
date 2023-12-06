@@ -22,7 +22,7 @@ EOF
 echo -e "\e[0m"
 
 # Display clickable links
-echo -e "Script Repo and README: [\e[1;35mGitHub Repo\e[0m](https://github.com/GSB-Deleven/HomeLab) under \e[1;35mScripts/OneClick Proxmox Container/ubuntu 23.04/README.md\e[0m"
+echo -e "Script Repo and README: [\e[1;35mGitHub Repo\e[0m](https://github.com/GSB-Deleven/HomeLab/tree/main/Scripts/OneClick%20Proxmox%20Container/ubuntu%2023.04)"
 
 # Function to display a pretty message
 pretty_echo() {
@@ -121,4 +121,22 @@ if [ "$install_nfs" == "y" ]; then
 fi
 
 # Install Docker and Docker Compose
-echo -n -e "Do you want to install \e[1;35
+echo -n -e "Do you want to install \e[1;35mDocker and Docker Compose\e[0m? (\e[1;35y\e[0m/\e[1;31mn\e[0m): "
+read install_docker
+if [ "$install_docker" == "y" ]; then
+    pretty_echo "Installing \e[1;35mDocker and Docker Compose\e[0m..."
+    install_package "docker"
+    install_package "docker-compose"
+fi
+
+# Install Portainer agent
+echo -n -e "Do you want to install \e[1;35mPortainer agent\e[0m? (\e[1;35my\e[0m/\e[1;31mn\e[0m): "
+read install_portainer
+if [ "$install_portainer" == "y" ]; then
+    pretty_echo "Installing \e[1;35mPortainer agent\e[0m..."
+    docker volume create portainer_data
+    docker run -d -p 9000:9000 -p 8000:8000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce
+fi
+
+# Display completion message
+pretty_echo "Script execution completed successfully!"
